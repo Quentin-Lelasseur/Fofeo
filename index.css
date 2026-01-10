@@ -107,7 +107,7 @@ body {
 }
 
 .TitleDIv {
-    background-color: rgba(0, 0, 0, 0.35);
+    background-color: rgba(185, 173, 173, 0.089);
     border-radius: 8px;
     padding: 8px 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -119,7 +119,7 @@ body {
 .TitleDIv:hover {
     transform: translateY(-5px); 
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4); 
-    background-color: rgba(0, 0, 0, 0.20); 
+    background-color: rgba(0, 0, 0, 0.35);
 }
 
 
