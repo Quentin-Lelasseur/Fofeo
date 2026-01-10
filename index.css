@@ -58,25 +58,86 @@ body {
 
 .Container {
     background-color: rgb(54, 59, 82, 0.3);
-    width: 40%;
-    max-height: 380px;
-    max-width: 450px;
-    min-width: 300px;
+    /* responsive width with sensible min/max in viewport units (narrower) */
+    width: 20%;
+    min-width: 15vw;
+    max-width: 40vw;
+    /* let height grow with content, but cap to viewport */
+    height: auto;
+    min-height: 15vh;
+    max-height: 80vh;
     border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 20px 0; 
-    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    padding: 20px;
+    transition: transform 0.22s cubic-bezier(.2,.9,.2,1), box-shadow 0.2s ease-out;
+    transform-origin: center center;
+    will-change: transform;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 10px 30px rgba(0, 150, 255, 0.3);
     backdrop-filter: blur(8px);
     perspective: 1000px;
     color: white;
     gap: 20px;
-    padding: 10px;
     padding-top: 20px;
+    overflow: auto; /* allow scrolling if too much content */
 }
+
+.Container:hover {
+    transform: translateY(-10px) scale(1.06);
+    box-shadow: 0 0 24px rgba(255, 255, 255, 0.65), 0 12px 30px rgba(0, 150, 255, 0.45);
+}
+
+
+/* Ensure good behavior on small screens */
+@media (max-width: 700px) {
+    .Container {
+        width: 76%;
+        min-width: auto;
+        max-width: 92%;
+        padding: 16px;
+        gap: 12px;
+    }
+    .ContainerTitle { font-size: 1.4rem; }
+    .ProfileImage { width: 96px; height: 96px; }
+}
+
+
+.Header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.HeaderText {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Bio plus lisible */
+.InformationContainer {
+    text-align: left;
+}
+
+/* Responsive : on repasse vertical sur mobile */
+@media (max-width: 700px) {
+    .Header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .HeaderText {
+        align-items: center;
+    }
+
+    .InformationContainer {
+        text-align: center;
+    }
+}
+
 
 
 .ContainerTitle {
@@ -101,7 +162,7 @@ body {
 
 .ProfileImage:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 15px 25px rgba(94, 94, 94, 0.4);
     background-color: rgba(0, 0, 0, 0.35);
     filter: brightness(100%);
 }
@@ -109,16 +170,16 @@ body {
 .TitleDIv {
     background-color: rgba(185, 173, 173, 0.089);
     border-radius: 8px;
-    padding: 8px 20px;
+    padding: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 80%; 
+    width:30%; 
     text-align: center;
 }
 
 .TitleDIv:hover {
     transform: translateY(-5px); 
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4); 
+    box-shadow: 0 15px 25px rgba(94, 94, 94, 0.4);
     background-color: rgba(0, 0, 0, 0.35);
 }
 
@@ -138,7 +199,7 @@ body {
 
 .ProfileContainer:hover{
     transform: translateY(-5px);
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 15px 25px rgba(94, 94, 94, 0.4);
     background-color: rgba(0, 0, 0, 0.35);
 }
 
@@ -163,18 +224,54 @@ body {
 }
 
 .MediaIcon{
+    width: 60px;
+    height: 60px;
+}
+
+.TiktokMediaIcon{
     width: 50px;
     height: 50px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.SocialMedia{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+    flex-direction: row;
+    background-color: rgba(185, 173, 173, 0.089);
+    padding: 10px;
+    border-radius: 20px ;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.SocialMedia:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(94, 94, 94, 0.4);
+    background-color: rgba(0, 0, 0, 0.35);
+
 }
 
 .MediaButton{
-    width: 20px;
-    height: 20px;
+    width: 60px;
+    height: 60px;
     background: transparent;
     border: none;
     padding: 0;
     cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 25%;
 }
+
+.MediaButton:hover {
+    transform: translate(0, -5px);
+    box-shadow: 0 15px 25px rgba(94, 94, 94, 0.4);
+}
+
 
 .InformationContainer{
     background-color: rgba(185, 173, 173, 0.089);
@@ -187,7 +284,7 @@ body {
 }
 
 .InformationContainer:hover {
-    transform: translateY(-5px), scale(1.2); 
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4); 
+    transform: translateY(-5px); 
+    box-shadow: 0 15px 25px rgba(94, 94, 94, 0.4);
     background-color: rgba(0, 0, 0, 0.35);
 }
